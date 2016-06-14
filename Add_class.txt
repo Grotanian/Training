@@ -21,6 +21,14 @@ Test_Setup_Steps
     Input Text    inputPassword    ${password test}
     Click Button    tag=button
 
+Negative Test    [Arguments]    ${class_id}    ${class_number}
+    Click Element    xpath=html/body/div[2]/div/div[2]/div/div/ul/li[${class_id}]/a
+    Click Element    xpath=//*[@id=${class_id}]/a
+    Wait Until Page Contains    Додати клас
+    Input Text    inputName    ${class_number}
+    Click Button    Прийняти
+    Page Should Contain    Некоректно введено назву
+
 *** Test Cases ***
 Test 1 Check that profile is opened
     [Tags]    ValidTest    AddClass
